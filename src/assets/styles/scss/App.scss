@@ -77,6 +77,58 @@ body {
     }
 }
 
+.quiz-screen {
+
+}
+
+.question {
+
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    >*:not(.button){
+        color: map-get($question, "text");
+    }
+    .text {
+
+    }
+    .answers {
+        list-style-type:none;
+
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: .75rem;
+
+        .option {
+   
+            text-align: center;
+            padding: .4rem 1.2rem;
+            border: 1px solid map-get($question, "border");
+            border-radius: .5rem;
 
 
+            position:relative;
+            label {
+                z-index:90;
+            }
+            input {
+                display: block;
+                position:absolute;
+                top:0;
+                left:0;
+                right:0;
+                bottom:0;
+
+                opacity:0.01;
+                cursor: pointer;
+                z-index:100;
+
+            }
+            input[type="radio"]:checked + label{
+                background-color: map-get($question, "selected");
+                background-color: red;
+            }
+        }
+    }
+
+}
 

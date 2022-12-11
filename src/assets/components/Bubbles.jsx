@@ -2,7 +2,6 @@ import React from "react";
 
 export default function Bubbles(props) {
     const bubbleColor = {backgroundColor: props.color === "yellow" ? "#FFFAD1" : "#DEEBF8"};
-    console.log(bubbleColor)
     return (
         <div className={`bubble-container ${props.position}`}>
 
