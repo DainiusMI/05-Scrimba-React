@@ -1,0 +1,103 @@
+@use "./variables" as *;
+
+
+.bottom {
+    bottom: 0%;
+    left: 0%;
+    transform: translate(-50%, 50%) rotate(0deg);
+}
+.top {
+    top: 0%;
+    right: 0%;
+    transform: translate(50%, -50%) rotate(0deg);
+}
+
+.bubble-container {
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    padding: 100px;
+    background-color: map-get($background, "background" );
+    fill: blur(10px) contrast(15); 
+    .bg {
+        width: 60vw;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.bubble {
+    width: 50px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+}
+
+.bubble:not(.bg) {
+    animation: pulse 2s linear infinite;
+}
+
+
+.spin-left {
+    animation:  orbit 23s linear infinite;
+    position: absolute;
+    top: 0%;
+    right: 40%; 
+}
+.spin-right-1 {
+    animation:  orbit 27s linear infinite reverse;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    .bubble {
+        width: 3vw;
+    }
+}
+.spin-right-2 {
+    animation:  orbit 17s linear 3s infinite reverse;
+    position: absolute;
+    top: 30%;
+    left: 20%;
+}
+
+
+
+@keyframes orbit {
+    from {
+        transform: rotate(0deg) translate(35vw);
+    }
+    to {
+        transform: rotate(360deg) translate(35vw);
+    }
+}
+
+
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg) translate(-50%, -50%);
+    }
+    to {
+        transform: rotate(360deg) translate(-50%, -50%);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

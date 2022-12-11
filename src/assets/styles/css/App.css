@@ -1,34 +1,15 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.bottom {
+  bottom: 0%;
+  left: 0%;
+  transform: translate(-50%, 50%) rotate(0deg);
 }
 
-body {
-  width: 100vw;
-  height: 100vh;
-  font-family: "Karla", sans-serif;
-  overflow: hidden;
+.top {
+  top: 0%;
+  right: 0%;
+  transform: translate(50%, -50%) rotate(0deg);
 }
 
-#root {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: #F5F7FB;
-  position: relative;
-}
-
-.start-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-}
 .bubble-container {
   position: absolute;
   display: flex;
@@ -43,18 +24,6 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.bottom {
-  bottom: 0%;
-  left: 0%;
-  transform: translate(-50%, 50%) rotate(0deg);
-}
-
-.top {
-  top: 0%;
-  right: 0%;
-  transform: translate(50%, -50%) rotate(0deg);
 }
 
 .bubble {
@@ -159,4 +128,66 @@ body {
   100% {
     transform: scale(1);
   }
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+}
+
+.karla {
+  font-family: "Karla", sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #F5F7FB;
+  position: relative;
+}
+
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 2;
+}
+.start-screen > *:not(.button) {
+  color: #293264;
+  text-align: center;
+}
+.start-screen .heading {
+  font-family: "Karla", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.start-screen .description {
+  width: max(50vw, 20rem);
+}
+
+.button {
+  font-weight: 500;
+  color: #F5F7FB;
+  background-color: #4D5B9E;
+  min-width: 8.5rem;
+  padding: 1rem 1.8rem;
+  border: 0;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.button:active {
+  box-shadow: inset 0 0 1rem #293264;
 }/*# sourceMappingURL=App.css.map */
