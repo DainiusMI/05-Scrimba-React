@@ -3,7 +3,7 @@ import React from "react";
 export default function QuestionField(props) {
     const question = props.trivia.question.replaceAll("&quot;", "\"").replaceAll("&#039;", "\'");
     const correctAnswer = props.trivia.correct_answer;
-    const answers = [...props.trivia.incorrect_answers, correctAnswer];
+    const answers = [...props.trivia.incorrect_answers, correctAnswer].sort((a, b) => 0.5 - Math.random());
     //console.log(typeof question.replaceAll("&quot;", "\"").replaceAll("&#039;", "\'"))
     return (
         <div className="question">
