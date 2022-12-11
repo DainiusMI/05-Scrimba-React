@@ -1,11 +1,9 @@
 import React from "react";
 
 export default function QuestionField(props) {
-    const {incorrect, correct} = props.trivia
     const question = props.trivia.question.replaceAll("&quot;", "\"").replaceAll("&#039;", "\'");
     const correctAnswer = props.trivia.correct_answer;
     const answers = [...props.trivia.incorrect_answers, correctAnswer];
-
     //console.log(typeof question.replaceAll("&quot;", "\"").replaceAll("&#039;", "\'"))
     return (
         <div className="question">
@@ -22,6 +20,7 @@ export default function QuestionField(props) {
                     })
                 }
             </ul>
+            <hr />
         </div>
     )
 }

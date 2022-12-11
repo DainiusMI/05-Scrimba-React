@@ -192,27 +192,55 @@ body {
   box-shadow: inset 0 0 1rem #293264;
 }
 
+.quiz-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 80vw;
+}
+
 .question {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
   font-family: "Karla", sans-serif;
   font-weight: 700;
 }
 .question > *:not(.button) {
   color: #293264;
 }
+.question .text {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .question .answers {
   list-style-type: none;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.75rem;
+  width: 100%;
 }
 .question .answers .option {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   padding: 0.4rem 1.2rem;
   border: 1px solid #4D5B9E;
   border-radius: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 500;
   position: relative;
 }
 .question .answers .option label {
+  text-align: center;
   z-index: 90;
 }
 .question .answers .option input {
@@ -229,4 +257,8 @@ body {
 .question .answers .option input[type=radio]:checked + label {
   background-color: #D6DBF5;
   background-color: red;
+}
+.question hr {
+  width: 100%;
+  border: 0.794239px solid #DBDEF0;
 }/*# sourceMappingURL=App.css.map */

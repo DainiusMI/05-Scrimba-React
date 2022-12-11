@@ -78,36 +78,53 @@ body {
 }
 
 .quiz-screen {
+    @include flex(column, flex-start, center);
+    gap: .75rem;
 
+    width: 80vw;
 }
 
 .question {
+    @include flex(column, flex-start, center);
+    gap: .75rem;
+    width: 100%;
 
     font-family: 'Karla', sans-serif;
     font-weight: 700;
+  
+
+
     >*:not(.button){
         color: map-get($question, "text");
     }
     .text {
 
+
+        -webkit-user-select: none;  
+        -moz-user-select: none;     
+        -ms-user-select: none;      
+        user-select: none;   
     }
     .answers {
         list-style-type:none;
 
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: .75rem;
+        width: 100%;
 
         .option {
-   
-            text-align: center;
+            @include flex(row, center, center);
             padding: .4rem 1.2rem;
             border: 1px solid map-get($question, "border");
             border-radius: .5rem;
 
+            font-size: 0.7rem;
+            font-weight: 500;
 
             position:relative;
             label {
+                text-align: center;
                 z-index:90;
             }
             input {
@@ -129,6 +146,9 @@ body {
             }
         }
     }
-
+    hr {
+        width: 100%;
+        border: 0.794239px solid #DBDEF0;
+    }
 }
 
