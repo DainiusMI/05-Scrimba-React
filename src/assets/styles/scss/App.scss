@@ -2,9 +2,6 @@
 @use "./gb=anim" as *;
 
 
-
-
-
 @mixin flex($direction, $align, $justify) {
     display: flex;
     flex-direction: $direction;
@@ -66,7 +63,7 @@ body {
     background-color: map-get($button , "background");
 
     min-width: 8.5rem;
-    padding: 1rem 1.8rem;
+    padding: .8rem 1.8rem;
     border: 0;
     border-radius: 1rem;
 
@@ -82,6 +79,9 @@ body {
     gap: .75rem;
 
     width: 80vw;
+    .button {
+        align-self: center;
+    }
 }
 
 .question {
@@ -91,15 +91,13 @@ body {
 
     font-family: 'Karla', sans-serif;
     font-weight: 700;
-  
-
 
     >*:not(.button){
         color: map-get($question, "text");
     }
     .text {
 
-
+        /* not selectable */
         -webkit-user-select: none;  
         -moz-user-select: none;     
         -ms-user-select: none;      
@@ -108,38 +106,41 @@ body {
     .answers {
         list-style-type:none;
 
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        @include flex(row, center, flex-start);
         gap: .75rem;
         width: 100%;
 
+        .selected {
+            background-color: red;
+        }
         .option {
             @include flex(row, center, center);
             padding: .4rem 1.2rem;
             border: 1px solid map-get($question, "border");
             border-radius: .5rem;
-
             font-size: 0.7rem;
             font-weight: 500;
-
+            
             position:relative;
-            label {
+            .label {
                 text-align: center;
                 z-index:90;
+                
             }
-            input {
+            .input {
                 display: block;
                 position:absolute;
                 top:0;
                 left:0;
                 right:0;
                 bottom:0;
-
+    
                 opacity:0.01;
                 cursor: pointer;
                 z-index:100;
 
             }
+
             input[type="radio"]:checked + label{
                 background-color: map-get($question, "selected");
                 background-color: red;
