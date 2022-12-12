@@ -27,22 +27,38 @@ export default function QuizScreen() {
             */
     }, [])
 
-    console.log(gameData)
 
 
     function handleAnswers(event) {
-        const id = event.target.name;
+        const questionIDX = event.target.name;
+        const answerIDX = event.target.id[4]
+
+
         const value = event.target.value;
-        
+        const updtatedQuestion = {
+            question: gameData[questionIDX].question,
+            answers: gameData[questionIDX].answers.map(answer => answer.value === value ? { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect } : answer)
+        }
+        //console.log(updtatedQuestion)
+        setGameData(prevState => prevState.map((prevQuestion, idx) => {
+            return idx == questionIDX ? {
+                question: gameData[idx].question,
+                answers: gameData[idx].answers.map(answer => answer.value === value ? { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect } : answer)
+            } : prevQuestion
+        }))
         /*
-        setHowldAnswers(prevData => {
-            return {
-                ...prevData,
-                [id]: value
-            }
-        });*/
-        //event.target.checked && event.target.classList.add("selected")
-        
+                console.log(event.target)
+        console.log(
+            gameData[questionIDX].answers[answerIDX].isHeld
+        )
+
+        console.log(
+            gameData.map(element => element.answers.map(answer => {
+              return  answer.value === value ? { value: value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect} : answer
+            }))
+        )
+        */
+        //console.log(gameData[questionIDX].answers[answerIDX])
     }
 
     return (
@@ -54,7 +70,7 @@ export default function QuizScreen() {
                     return (
                         <QuestionField 
                             key={`question-${idx}`} 
-                            id={`question-${idx}`} 
+                            id={idx} 
                             data={question}
                             handleAnswers={handleAnswers}
                 
