@@ -3,7 +3,7 @@ import QuestionField from "./QuestionField"
 
 
 export default function QuizScreen() {
-    const [triviaData, setTrivitaData] = React.useState([])
+    //const [triviaData, setTrivitaData] = React.useState([])
     const [gameData, setGameData] = React.useState([])
     React.useEffect(() => {
         fetch("https://opentdb.com/api.php?amount=5&category=20&difficulty=easy&type=multiple")
@@ -31,7 +31,6 @@ export default function QuizScreen() {
 
     function handleAnswers(event) {
         const {name, value} = event.target;
-        console.log("click")
         setGameData(prevState => prevState.map((prevData, idx) => {
             return idx != name ? prevData : {
                 question: prevData.question,
@@ -43,16 +42,14 @@ export default function QuizScreen() {
     return (
         <form className="quiz-screen">
             {
-            
-                gameData.length && gameData.map((question, idx) => {
-                    
+                gameData.length && gameData.map((question, idx) => {       
                     return (
                         <QuestionField 
                             key={`question-${idx}`} 
                             id={idx} 
                             data={question}
                             handleAnswers={handleAnswers}
-                
+
                         />    
                     )
                 } )

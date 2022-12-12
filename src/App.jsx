@@ -6,6 +6,9 @@ import "./assets/styles/css/App.css"
 export default function App() {
 
   return (
+    /*
+      you will need to store state for quiz options here
+    */
     <main>
 
         <QuizScreen />

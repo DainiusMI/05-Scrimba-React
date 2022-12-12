@@ -1,16 +1,17 @@
 import React from "react";
+import { useEffect } from "react";
 
 export default function QuestionField(props) {
-    const question = props.data.question.replaceAll("&quot;", "\"").replaceAll("&#039;", "\'");
-    //const correctAnswer = props.trivia.correct_answer;
-    //const answers = [...props.trivia.incorrect_answers, correctAnswer]//.sort((a, b) => 0.5 - Math.random());
-    const answers = props.data.answers
-
-    function setClassName() {
-
-
+    function cleanUp(string) {
+        return string.replaceAll("&quot;", "\"").replaceAll("&#039;", "\'");
     }
-
+    const question = cleanUp(props.data.question);
+    //const answers = props.data.answers
+    let answers =  props.data.answers;
+    useEffect(() => {
+        answers = answers.sort((a, b) => 0.5 - Math.random())
+        console.log("effect")
+    }, [])
 
     return (
         <div className="question" id={props.id}>
@@ -27,7 +28,7 @@ export default function QuestionField(props) {
                                 <label 
                                     className="label" 
                                     htmlFor={`q${props.id}-a${idx}`}
-                                >{answer.value}</label>
+                                >{cleanUp(answer.value)}</label>
 
                                 <input 
                                     className="input"
