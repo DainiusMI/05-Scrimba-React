@@ -111,7 +111,7 @@ body {
         width: 100%;
 
         .selected {
-            background-color: red;
+            background-color: map-get($question, "selected");
         }
         .option {
             @include flex(row, center, center);

@@ -30,35 +30,14 @@ export default function QuizScreen() {
 
 
     function handleAnswers(event) {
-        const questionIDX = event.target.name;
-        const answerIDX = event.target.id[4]
-
-
-        const value = event.target.value;
-        const updtatedQuestion = {
-            question: gameData[questionIDX].question,
-            answers: gameData[questionIDX].answers.map(answer => answer.value === value ? { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect } : answer)
-        }
-        //console.log(updtatedQuestion)
-        setGameData(prevState => prevState.map((prevQuestion, idx) => {
-            return idx == questionIDX ? {
-                question: gameData[idx].question,
-                answers: gameData[idx].answers.map(answer => answer.value === value ? { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect } : answer)
-            } : prevQuestion
+        const {name, value} = event.target;
+        console.log("click")
+        setGameData(prevState => prevState.map((prevData, idx) => {
+            return idx != name ? prevData : {
+                question: prevData.question,
+                answers: prevData.answers.map(answer => answer.value === value ? { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect } : !answer.isHeld ? answer : { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect })
+            }
         }))
-        /*
-                console.log(event.target)
-        console.log(
-            gameData[questionIDX].answers[answerIDX].isHeld
-        )
-
-        console.log(
-            gameData.map(element => element.answers.map(answer => {
-              return  answer.value === value ? { value: value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect} : answer
-            }))
-        )
-        */
-        //console.log(gameData[questionIDX].answers[answerIDX])
     }
 
     return (

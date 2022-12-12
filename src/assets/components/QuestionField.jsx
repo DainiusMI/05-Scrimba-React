@@ -35,7 +35,7 @@ export default function QuestionField(props) {
                                     id={`q${props.id}-a${idx}`} 
                                     name={props.id}
                                     value={answer.value}
-                                    onChange={props.handleAnswers}
+                                    onClick={props.handleAnswers}
                                     //checked={console.log(`q${props.id}-a${idx}`)}
                                 />
                             </li>

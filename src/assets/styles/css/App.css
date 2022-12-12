@@ -234,7 +234,7 @@ body {
   width: 100%;
 }
 .question .answers .selected {
-  background-color: red;
+  background-color: #D6DBF5;
 }
 .question .answers .option {
   display: flex;
