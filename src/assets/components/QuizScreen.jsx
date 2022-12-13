@@ -3,6 +3,11 @@ import QuestionField from "./QuestionField"
 
 
 export default function QuizScreen() {
+
+    const [gameState, setGameState] = React.useState({run: false})
+    const [counter, setCounter] = React.useState({correct: 0})
+    const [restartGame, setRestartGame] = React.useState({restart: false})
+
     //const [triviaData, setTrivitaData] = React.useState([])
     const [gameData, setGameData] = React.useState([])
     React.useEffect(() => {
@@ -22,20 +27,18 @@ export default function QuizScreen() {
                                     value: item.correct_answer, 
                                     isCorrect: true, 
                                     isHeld: false
-                                })
+                                }).sort((a, b) => 0.5 - Math.random())
                         }
                     }))
                 })
     }, [])
 
-    const [runGame, setRunGame] = React.useState(false)
 
-    const [correctCounter, setCorrectCounter] = React.useState({correct: 0})
-
+    console.log("gameState: "+gameState.run)
     React.useEffect(() => {
         gameData.map(element => element.answers.map(answer => {
             if (answer.isHeld && answer.isCorrect) {
-                setCorrectCounter(prevCount => {
+                setCounter(prevCount => {
                     return {
                         correct: prevCount.correct + 1
                     }
@@ -43,11 +46,11 @@ export default function QuizScreen() {
             }
         }))
 
-    }, [runGame])
-
+    }, [gameState.run])
+    
     function handleAnswers(event) {
         const {value, position} = event.target.dataset;
-        !runGame && setGameData(prevState => prevState.map((prevData, idx) => {
+        !gameState.run && setGameData(prevState => prevState.map((prevData, idx) => {
             return idx != position ? prevData : {
                 question: prevData.question,
                 answers: prevData.answers.map(answer => answer.value === value ? { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect } : !answer.isHeld ? answer : { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect })
@@ -63,24 +66,47 @@ export default function QuizScreen() {
             className = isHeld ? "selected option no-user-select" : "option no-user-select"
         }
         function evaluatedClass() {
-            if (isHeld && isCorrect) {
+            if (isCorrect) {
                 className = "option correct no-user-select"
             }
-            else if (isHeld) {
+            else if (isHeld && !isCorrect) {
                 className = "option incorrect no-user-select"
             }
             else {
                 className = "option no-user-select"
             }
         }
-        runGame ? evaluatedClass() : selectedClass()
+        gameState.run ? evaluatedClass() : selectedClass()
         return className 
     }
-
-    function run() {
-        setRunGame(true)
+    function runTest() {
+        setGameState(prevData => ({run: !prevData.run}))
     }
-    runGame && console.log("check answers")
+    function restart() {
+        setRestartGame(prevValue => !prevValue)
+    }
+
+    function selectButton() {
+        if (gameState.run === true) {
+            return (
+                <div className="row">
+                    <p>You score <span>{counter.correct}</span>/5 correct answers</p>
+                    <button 
+                        className="button" 
+                        
+                    >Play again</button>
+                </div>
+            )
+        }
+        else 
+            return (<button 
+                        className="button" 
+                        onClick={runTest}
+                    >Check answers</button>)
+    }
+    const placeButton = selectButton()
+
+    
     return (
         <section className="quiz-screen">
             {
@@ -95,9 +121,9 @@ export default function QuizScreen() {
                         />    
                     )
                 } )
-
+                
             }
-            <button className="button" onClick={run}>Check answers</button>
+            {placeButton}
         </section>
     )
 }

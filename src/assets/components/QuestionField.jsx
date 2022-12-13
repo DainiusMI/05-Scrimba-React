@@ -10,9 +10,6 @@ export default function QuestionField(props) {
     const question = cleanUp(props.data.question);
 
     let answers = props.data.answers;
-    useEffect(() => {
-        answers = answers.sort((a, b) => 0.5 - Math.random())
-    }, [])
 
     // rendered answers still placed in order
     
