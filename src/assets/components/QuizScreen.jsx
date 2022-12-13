@@ -28,9 +28,7 @@ export default function QuizScreen() {
                 })
     }, [])
 
-    const [gameState, setGameState] = React.useState({
-        runCheck: false
-    })
+    const [runGame, setRunGame] = React.useState(false)
 
     const [correctCounter, setCorrectCounter] = React.useState({correct: 0})
 
@@ -45,11 +43,11 @@ export default function QuizScreen() {
             }
         }))
 
-    }, [gameState])
+    }, [runGame])
 
     function handleAnswers(event) {
         const {value, position} = event.target.dataset;
-        !gameState.runCheck && setGameData(prevState => prevState.map((prevData, idx) => {
+        !runGame && setGameData(prevState => prevState.map((prevData, idx) => {
             return idx != position ? prevData : {
                 question: prevData.question,
                 answers: prevData.answers.map(answer => answer.value === value ? { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect } : !answer.isHeld ? answer : { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect })
@@ -64,7 +62,7 @@ export default function QuizScreen() {
         function selectedClass() {
             className = isHeld ? "selected option no-user-select" : "option no-user-select"
         }
-        function checkedClass() {
+        function evaluatedClass() {
             if (isHeld && isCorrect) {
                 className = "option correct no-user-select"
             }
@@ -75,14 +73,14 @@ export default function QuizScreen() {
                 className = "option no-user-select"
             }
         }
-        gameState.runCheck ? checkedClass() : selectedClass()
+        runGame ? evaluatedClass() : selectedClass()
         return className 
     }
 
-    function runCheck() {
-        setGameState(prevState => ({runCheck: true}))
+    function run() {
+        setRunGame(true)
     }
-    gameState.runCheck && console.log("check answers")
+    runGame && console.log("check answers")
     return (
         <section className="quiz-screen">
             {
@@ -99,7 +97,7 @@ export default function QuizScreen() {
                 } )
 
             }
-            <button className="button" onClick={runCheck}>Check answers</button>
+            <button className="button" onClick={run}>Check answers</button>
         </section>
     )
 }
