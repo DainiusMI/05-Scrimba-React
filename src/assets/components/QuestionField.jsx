@@ -15,7 +15,7 @@ export default function QuestionField(props) {
     }, [])
 
     // rendered answers still placed in order
-
+    
 
     return (
         <div className="question" id={props.id}>
@@ -28,7 +28,7 @@ export default function QuestionField(props) {
                                 key={idx} 
                                 // modify this to check
                                 //className={answer.isHeld ? "selected option no-user-select" : "option no-user-select" }  
-                                className={props.checkAnswers(answer)}  
+                                className={props.handleClassName(answer)}  
 
                                 id={`q${props.id}-a${idx}`} 
                                 data-value={answer.value}

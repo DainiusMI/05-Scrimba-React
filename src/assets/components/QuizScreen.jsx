@@ -26,23 +26,30 @@ export default function QuizScreen() {
                         }
                     }))
                 })
-            /*
-            setGameData(triviaData.map(item => {
-                return {
-                    question: item.question,
-                    answers: item.incorrect_answers.map(answer => {return {value: answer, isCorrect: false, isHeld: false}}).concat({value: item.correct_answer, isCorrect: true, isHeld: false})
-                }
-            }))
-            */
     }, [])
 
+    const [gameState, setGameState] = React.useState({
+        runCheck: false
+    })
 
+    const [correctCounter, setCorrectCounter] = React.useState({correct: 0})
+
+    React.useEffect(() => {
+        gameData.map(element => element.answers.map(answer => {
+            if (answer.isHeld && answer.isCorrect) {
+                setCorrectCounter(prevCount => {
+                    return {
+                        correct: prevCount.correct + 1
+                    }
+                })
+            }
+        }))
+
+    }, [gameState])
 
     function handleAnswers(event) {
-
         const {value, position} = event.target.dataset;
-
-        setGameData(prevState => prevState.map((prevData, idx) => {
+        !gameState.runCheck && setGameData(prevState => prevState.map((prevData, idx) => {
             return idx != position ? prevData : {
                 question: prevData.question,
                 answers: prevData.answers.map(answer => answer.value === value ? { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect } : !answer.isHeld ? answer : { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect })
@@ -50,48 +57,30 @@ export default function QuizScreen() {
         }))
     }
 
-    
-    const [gameState, setGameState] = React.useState({
-        runCheck: false,
-        correct: 0
-    })
-    function checkAnswers(answer) {
-                
+
+    function handleClassName(answer) {
         const {isHeld, isCorrect} = answer;
         let className = ""
-        function select() {
-            className = isHeld ? "select option no-user-select" : "option no-user-select"
+        function selectedClass() {
+            className = isHeld ? "selected option no-user-select" : "option no-user-select"
         }
-        function check() {
+        function checkedClass() {
             if (isHeld && isCorrect) {
-                className = "option correct"
-                setGameState(prevState => {
-                    return {
-                        ...prevState,
-                        correct: prevState.correct + 1
-                    }
-                })
+                className = "option correct no-user-select"
             }
             else if (isHeld) {
-                className = "option incorrect"
+                className = "option incorrect no-user-select"
             }
             else {
-                className = "option"
+                className = "option no-user-select"
             }
         }
-        gameState.runCheck ? check() : select()
+        gameState.runCheck ? checkedClass() : selectedClass()
         return className 
-        // if selected and correct apply correct if not check if it was selected if yes apply inccorect if not just option
-        
-        isHeld && isCorrect ? "option correct" : isHeld ? "option incorrect" : "option"
     }
+
     function runCheck() {
-        setGameState(prevState => {
-            return {
-                ...prevState,
-                runCheck: true
-            }
-        })
+        setGameState(prevState => ({runCheck: true}))
     }
     gameState.runCheck && console.log("check answers")
     return (
@@ -104,18 +93,13 @@ export default function QuizScreen() {
                             id={idx} 
                             data={question}
                             handleAnswers={handleAnswers}
-                            checkAnswers={checkAnswers}
-
-                            setGameData={setGameData}
+                            handleClassName={handleClassName}
                         />    
                     )
                 } )
 
             }
-            <button 
-                className="button"
-                onClick={runCheck}
-            >Check answers</button>
+            <button className="button" onClick={runCheck}>Check answers</button>
         </section>
     )
 }
