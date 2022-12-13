@@ -211,18 +211,13 @@ body {
   justify-content: center;
   gap: 0.75rem;
   width: 100%;
-  font-family: "Karla", sans-serif;
   font-weight: 700;
 }
 .question > *:not(.button) {
   color: #293264;
 }
 .question .text {
-  /* not selectable */
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  font-family: "Karla", sans-serif;
 }
 .question .answers {
   list-style-type: none;
@@ -232,9 +227,6 @@ body {
   justify-content: flex-start;
   gap: 0.75rem;
   width: 100%;
-}
-.question .answers .selected {
-  background-color: #D6DBF5;
 }
 .question .answers .option {
   display: flex;
@@ -246,28 +238,35 @@ body {
   border-radius: 0.5rem;
   font-size: 0.7rem;
   font-weight: 500;
-  position: relative;
-}
-.question .answers .option .label {
-  text-align: center;
-  z-index: 90;
-}
-.question .answers .option .input {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0.01;
   cursor: pointer;
-  z-index: 100;
+  text-align: center;
 }
-.question .answers .option input[type=radio]:checked + label {
-  background-color: #D6DBF5;
+.question .answers .option .answer {
   background-color: red;
 }
 .question hr {
   width: 100%;
   border: 0.794239px solid #DBDEF0;
+}
+
+.no-user-select {
+  /* not selectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.selected {
+  background-color: #D6DBF5;
+}
+
+.correct {
+  background-color: #94D7A2;
+  border-color: #94D7A2;
+}
+
+.incorrect {
+  background-color: #F8BCBC;
+  border-color: #F8BCBC;
 }/*# sourceMappingURL=App.css.map */

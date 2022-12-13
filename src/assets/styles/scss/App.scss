@@ -89,19 +89,13 @@ body {
     gap: .75rem;
     width: 100%;
 
-    font-family: 'Karla', sans-serif;
     font-weight: 700;
 
     >*:not(.button){
         color: map-get($question, "text");
     }
     .text {
-
-        /* not selectable */
-        -webkit-user-select: none;  
-        -moz-user-select: none;     
-        -ms-user-select: none;      
-        user-select: none;   
+        font-family: 'Karla', sans-serif;
     }
     .answers {
         list-style-type:none;
@@ -110,9 +104,7 @@ body {
         gap: .75rem;
         width: 100%;
 
-        .selected {
-            background-color: map-get($question, "selected");
-        }
+
         .option {
             @include flex(row, center, center);
             padding: .4rem 1.2rem;
@@ -121,28 +113,9 @@ body {
             font-size: 0.7rem;
             font-weight: 500;
             
-            position:relative;
-            .label {
-                text-align: center;
-                z-index:90;
-                
-            }
-            .input {
-                display: block;
-                position:absolute;
-                top:0;
-                left:0;
-                right:0;
-                bottom:0;
-    
-                opacity:0.01;
-                cursor: pointer;
-                z-index:100;
-
-            }
-
-            input[type="radio"]:checked + label{
-                background-color: map-get($question, "selected");
+            cursor: pointer;
+            text-align: center;
+            .answer {
                 background-color: red;
             }
         }
@@ -153,3 +126,22 @@ body {
     }
 }
 
+.no-user-select {
+            /* not selectable */
+            -webkit-user-select: none;  
+            -moz-user-select: none;     
+            -ms-user-select: none;      
+            user-select: none;   
+}
+
+.selected {
+    background-color: map-get($question, "selected");
+}
+.correct {
+    background-color: map-get($question, "correct");
+    border-color: map-get($question, "correct");
+}
+.incorrect {
+    background-color: map-get($question, "incorrect");
+    border-color: map-get($question, "incorrect");
+}
