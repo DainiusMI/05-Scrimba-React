@@ -130,6 +130,11 @@ body {
     border-color: map-get($question, "incorrect");
 }
 
+.settings {
+    @include flex(column, center, center);
+}
+
+
 .row {
     width: 100%;
     @include flex(row, center, center);
@@ -143,8 +148,6 @@ body {
     }
 
 }
-
-
 
 .button {
 
