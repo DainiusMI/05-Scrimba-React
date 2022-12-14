@@ -4,9 +4,9 @@ import QuestionField from "./QuestionField"
 
 export default function QuizScreen() {
 
-    const [gameState, setGameState] = React.useState({run: false})
+    const [runTest, setRunTest] = React.useState(false)
+    const [newGame, setNewGame] = React.useState(false)
     const [counter, setCounter] = React.useState({correct: 0})
-    const [restartGame, setRestartGame] = React.useState({restart: false})
 
     //const [triviaData, setTrivitaData] = React.useState([])
     const [gameData, setGameData] = React.useState([])
@@ -31,12 +31,13 @@ export default function QuizScreen() {
                         }
                     }))
                 })
-    }, [])
+
+    }, [newGame])
 
 
-    console.log("gameState: "+gameState.run)
+    // handle counter both count and reset
     React.useEffect(() => {
-        gameData.map(element => element.answers.map(answer => {
+        runTest && gameData.map(element => element.answers.map(answer => {
             if (answer.isHeld && answer.isCorrect) {
                 setCounter(prevCount => {
                     return {
@@ -45,12 +46,13 @@ export default function QuizScreen() {
                 })
             }
         }))
+        !runTest && setCounter({correct: 0})
 
-    }, [gameState.run])
+    }, [runTest])
     
     function handleAnswers(event) {
         const {value, position} = event.target.dataset;
-        !gameState.run && setGameData(prevState => prevState.map((prevData, idx) => {
+        !runTest && setGameData(prevState => prevState.map((prevData, idx) => {
             return idx != position ? prevData : {
                 question: prevData.question,
                 answers: prevData.answers.map(answer => answer.value === value ? { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect } : !answer.isHeld ? answer : { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect })
@@ -76,24 +78,26 @@ export default function QuizScreen() {
                 className = "option no-user-select"
             }
         }
-        gameState.run ? evaluatedClass() : selectedClass()
+        runTest ? evaluatedClass() : selectedClass()
         return className 
     }
-    function runTest() {
-        setGameState(prevData => ({run: !prevData.run}))
+    function checkAnswers() {
+        setRunTest(true)
     }
-    function restart() {
-        setRestartGame(prevValue => !prevValue)
+    function resetGame() {
+        //console.log("restart clicked")
+        setRunTest(false)
+        setNewGame(!newGame);
     }
-
+    console.log(counter.correct)
     function selectButton() {
-        if (gameState.run === true) {
+        if (runTest === true) {
             return (
                 <div className="row">
                     <p>You score <span>{counter.correct}</span>/5 correct answers</p>
                     <button 
                         className="button" 
-                        
+                        onClick={resetGame}
                     >Play again</button>
                 </div>
             )
@@ -101,7 +105,7 @@ export default function QuizScreen() {
         else 
             return (<button 
                         className="button" 
-                        onClick={runTest}
+                        onClick={checkAnswers}
                     >Check answers</button>)
     }
     const placeButton = selectButton()
