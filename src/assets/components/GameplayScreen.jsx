@@ -2,7 +2,7 @@ import React from "react"
 import QuestionField from "./QuestionField"
 
 
-export default function QuizScreen() {
+export default function QuizScreen(props) {
 
     const [runTest, setRunTest] = React.useState(false)
     const [newGame, setNewGame] = React.useState(false)
@@ -11,7 +11,7 @@ export default function QuizScreen() {
     //const [triviaData, setTrivitaData] = React.useState([])
     const [gameData, setGameData] = React.useState([])
     React.useEffect(() => {
-        fetch("https://opentdb.com/api.php?amount=5&category=20&difficulty=easy&type=multiple")
+        fetch(props.gemeSettings.url)
             .then(res => res.json())
             //.then(data => setTrivitaData(data.results))
                 .then(data => {

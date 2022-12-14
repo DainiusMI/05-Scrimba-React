@@ -4,14 +4,13 @@ export default function QuizSettings(props) {
 
     function confirmSettings(event) {
         const {name, value} = event.target
-        console.log(name)
         props.setGameSettings(prevSettings => ({...prevSettings, [name]: value }))
     }
     function fixString(string) {
         return string.charAt(0).toUpperCase() + string.slice(1).replace("_", " ")
     }
     return (
-        <section className="settings">
+        <div className="settings">
             <div className="category-container">
                 <label htmlFor="">Select Category:</label>
                 <select 
@@ -37,7 +36,7 @@ export default function QuizSettings(props) {
                 </select>
             </div>
 
-            <button className="button">Start Game</button>
-        </section>
+            <button className="button bg">Start Game</button>
+        </div>
     )
 }

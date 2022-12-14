@@ -262,6 +262,19 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+select {
+  margin-left: 0.5rem;
+  border-color: #4D5B9E;
+  color: #293264;
+}
+
+option:checked {
+  background-color: #4D5B9E;
+  color: #F5F7FB;
 }
 
 .row {

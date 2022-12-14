@@ -132,9 +132,20 @@ body {
 
 .settings {
     @include flex(column, center, center);
+    width: 100%;
+    gap: 1rem;
+}
+select {
+
+    margin-left: .5rem;
+    border-color: map-get($button, "background" );
+    color: $text-color;
 }
 
-
+option:checked {
+    background-color: map-get($button, "background");
+    color: map-get($button, "text");
+}
 .row {
     width: 100%;
     @include flex(row, center, center);

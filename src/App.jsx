@@ -1,9 +1,10 @@
 import React from "react";
 import Bubbles from "./assets/components/Bubbles";
 import StartScreen from "./assets/components/StartScreen";
-import QuizSettings from "./assets/components/QuizSettings";
-import QuizScreen from "./assets/components/QuizScreen";
+//import QuizSettings from "./assets/components/QuizSettings";
+import GameplayScreen from "./assets/components/GameplayScreen";
 import "./assets/styles/css/App.css"
+import { useEffect } from "react";
 export default function App() {
   const triviaURL = [
     {
@@ -40,8 +41,15 @@ export default function App() {
 
   const [gemeSettings, setGameSettings] = React.useState({
     category: "general_knowladge",
-    difficulty: "easy"
+    difficulty: "easy",
+    url: "https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple",
+    startGame: false
   })
+
+  useEffect(() => {
+    setGameSettings
+  }, [gemeSettings.startGame])
+
   console.log(gemeSettings)
   return (
     /*
@@ -50,8 +58,13 @@ export default function App() {
    
     <main>
       
-      <QuizSettings setGameSettings={setGameSettings} templateURL={templateURL}/>
-
+      {
+        gemeSettings.startGame ? 
+          <GameplayScreen gemeSettings={gemeSettings}/>:
+          <StartScreen setGameSettings={setGameSettings} templateURL={templateURL}/>
+        
+        
+      }
     </main>
   )
 }
