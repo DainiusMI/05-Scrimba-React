@@ -178,20 +178,6 @@ body {
   width: max(50vw, 20rem);
 }
 
-.button {
-  font-weight: 500;
-  color: #F5F7FB;
-  background-color: #4D5B9E;
-  min-width: 8.5rem;
-  padding: 0.8rem 1.8rem;
-  border: 0;
-  border-radius: 1rem;
-  cursor: pointer;
-}
-.button:active {
-  box-shadow: inset 0 0 1rem #293264;
-}
-
 .quiz-screen {
   display: flex;
   flex-direction: column;
@@ -269,4 +255,44 @@ body {
 .incorrect {
   background-color: #F8BCBC;
   border-color: #F8BCBC;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.row p {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #293264;
+}
+
+.button {
+  background-color: #4D5B9E;
+  width: 7.5rem;
+  height: 2.2rem;
+  border: 0;
+  border-radius: 0.6rem;
+  font-weight: 500;
+  color: #F5F7FB;
+  text-align: center;
+  cursor: pointer;
+}
+.button:active {
+  box-shadow: inset 0 0 1rem #293264;
+}
+
+.button.bg {
+  width: 12rem;
+  height: 3.2rem;
+  border-radius: 1rem;
+}
+
+.button.sm {
+  width: 6.5rem;
+  height: 1.9rem;
 }/*# sourceMappingURL=App.css.map */

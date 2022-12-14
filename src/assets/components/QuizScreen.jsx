@@ -96,7 +96,7 @@ export default function QuizScreen() {
                 <div className="row">
                     <p>You score <span>{counter.correct}</span>/5 correct answers</p>
                     <button 
-                        className="button" 
+                        className="button sm" 
                         onClick={resetGame}
                     >Play again</button>
                 </div>

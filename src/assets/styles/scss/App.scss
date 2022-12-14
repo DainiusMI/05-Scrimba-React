@@ -56,23 +56,7 @@ body {
     }
 }
 
-.button {
 
-    font-weight: 500;
-    color: map-get($button, "text");
-    background-color: map-get($button , "background");
-
-    min-width: 8.5rem;
-    padding: .8rem 1.8rem;
-    border: 0;
-    border-radius: 1rem;
-
-    cursor: pointer;
-
-    &:active {
-        box-shadow: inset 0 0 1rem $text-color;
-    }
-}
 
 .quiz-screen {
     @include flex(column, flex-start, center);
@@ -144,4 +128,52 @@ body {
 .incorrect {
     background-color: map-get($question, "incorrect");
     border-color: map-get($question, "incorrect");
+}
+
+.row {
+    width: 100%;
+    @include flex(row, center, center);
+    gap: 1.5rem;
+
+    p {
+        font-size: .8rem;
+        font-weight: 700;
+
+        color: $text-color;
+    }
+
+}
+
+
+
+.button {
+
+    background-color: map-get($button , "background");
+    width: 7.5rem;
+    height: 2.2rem;
+    border: 0;
+    border-radius: 0.6rem;
+
+
+    font-weight: 500;
+    color: map-get($button, "text");
+    text-align: center;
+
+    cursor: pointer;
+
+    &:active {
+        box-shadow: inset 0 0 1rem $text-color;
+    }
+}
+.button.bg {
+    width: 12rem;
+    height: 3.2rem;
+    border-radius: 1rem;
+
+}
+
+.button.sm {
+    width: 6.5rem;
+    height: 1.9rem;
+
 }
