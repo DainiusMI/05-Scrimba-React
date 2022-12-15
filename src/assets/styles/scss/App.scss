@@ -54,17 +54,46 @@ body {
         width: max(50vw, 20rem);
 
     }
+
+    .top-blob {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .bottom-blob {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
 }
 
 
 
-.quiz-screen {
+.gameplay-screen {
     @include flex(column, flex-start, center);
     gap: .75rem;
 
     width: 80vw;
+
+  
     .button {
         align-self: center;
+    }
+
+    .top-blob {
+        position: absolute;
+        top: -5%;
+        right: -5%;
+
+        z-index: 1;
+    }
+    .bottom-blob {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translate(-50%, 50%);
+
+        z-index: 1;
     }
 }
 
@@ -75,6 +104,7 @@ body {
 
     font-weight: 700;
 
+    z-index: 2;
     >*:not(.button){
         color: map-get($question, "text");
     }
@@ -92,6 +122,7 @@ body {
         .option {
             @include flex(row, center, center);
             padding: .4rem 1.2rem;
+            background-color: map-get($question, "background");
             border: 1px solid map-get($question, "border");
             border-radius: .5rem;
             font-size: 0.7rem;
@@ -99,9 +130,19 @@ body {
             
             cursor: pointer;
             text-align: center;
-            .answer {
-                background-color: red;
-            }
+        }
+
+
+        .selected {
+            background-color: map-get($question, "selected");
+        }
+        .correct {
+            background-color: map-get($question, "correct");
+            border-color: map-get($question, "correct");
+        }
+        .incorrect {
+            background-color: map-get($question, "incorrect");
+            border-color: map-get($question, "incorrect");
         }
     }
     hr {
@@ -118,17 +159,7 @@ body {
             user-select: none;   
 }
 
-.selected {
-    background-color: map-get($question, "selected");
-}
-.correct {
-    background-color: map-get($question, "correct");
-    border-color: map-get($question, "correct");
-}
-.incorrect {
-    background-color: map-get($question, "incorrect");
-    border-color: map-get($question, "incorrect");
-}
+
 
 .settings {
     @include flex(column, center, center);

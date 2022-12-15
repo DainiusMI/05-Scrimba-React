@@ -1,14 +1,14 @@
 import React from "react"
 import QuestionField from "./QuestionField"
+import yellowBlob from "../../../public/yellow_blob.png"
+import blueBlob from "../../../public/blue_blob.png"
 
-
-export default function QuizScreen(props) {
+export default function GameplayScreen(props) {
 
     const [runTest, setRunTest] = React.useState(false)
     const [newGame, setNewGame] = React.useState(false)
     const [counter, setCounter] = React.useState({correct: 0})
 
-    //const [triviaData, setTrivitaData] = React.useState([])
     const [gameData, setGameData] = React.useState([])
     React.useEffect(() => {
         fetch(props.gemeSettings.url)
@@ -51,11 +51,16 @@ export default function QuizScreen(props) {
     }, [runTest])
     
     function handleAnswers(event) {
+        console.log("click")
         const {value, position} = event.target.dataset;
         !runTest && setGameData(prevState => prevState.map((prevData, idx) => {
             return idx != position ? prevData : {
                 question: prevData.question,
-                answers: prevData.answers.map(answer => answer.value === value ? { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect } : !answer.isHeld ? answer : { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect })
+                answers: prevData.answers.map(answer => answer.value === value ? 
+                    { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect } : 
+                    !answer.isHeld ? 
+                        answer : 
+                        { value: answer.value, isHeld: !answer.isHeld, isCorrect: answer.isCorrect })
             }
         }))
     }
@@ -120,7 +125,10 @@ export default function QuizScreen(props) {
     }
     
     return (
-        <section className="quiz-screen">
+        <section className="gameplay-screen">
+
+            <img src={yellowBlob} alt="yellow-blob" className="top-blob" />
+
             {
                 gameData.length && gameData.map((question, idx) => {       
                     return (
@@ -139,6 +147,9 @@ export default function QuizScreen(props) {
                 className="button button-back"
                 onClick={backToStartScreen}
             ><i className="fa-solid fa-gear"></i></button>
+
+            <img src={blueBlob} alt="blue-blob" className="bottom-blob" />
+
         </section>
     )
 }

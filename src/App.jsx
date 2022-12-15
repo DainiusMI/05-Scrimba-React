@@ -1,9 +1,7 @@
 import React from "react";
-import Bubbles from "./assets/components/Bubbles";
 import StartScreen from "./assets/components/StartScreen";
 import GameplayScreen from "./assets/components/GameplayScreen";
 import "./assets/styles/css/App.css"
-import { useEffect } from "react";
 export default function App() {
 
   const templateURL = {
@@ -30,8 +28,6 @@ export default function App() {
         gemeSettings.startGame ? 
           <GameplayScreen gemeSettings={gemeSettings} setGameSettings={setGameSettings} />:
           <StartScreen setGameSettings={setGameSettings} templateURL={templateURL} />
-        
-        
       }
     </main>
   )

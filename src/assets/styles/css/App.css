@@ -177,8 +177,18 @@ body {
 .start-screen .description {
   width: max(50vw, 20rem);
 }
+.start-screen .top-blob {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.start-screen .bottom-blob {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 
-.quiz-screen {
+.gameplay-screen {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -186,8 +196,21 @@ body {
   gap: 0.75rem;
   width: 80vw;
 }
-.quiz-screen .button {
+.gameplay-screen .button {
   align-self: center;
+}
+.gameplay-screen .top-blob {
+  position: absolute;
+  top: -5%;
+  right: -5%;
+  z-index: 1;
+}
+.gameplay-screen .bottom-blob {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, 50%);
+  z-index: 1;
 }
 
 .question {
@@ -198,6 +221,7 @@ body {
   gap: 0.75rem;
   width: 100%;
   font-weight: 700;
+  z-index: 2;
 }
 .question > *:not(.button) {
   color: #293264;
@@ -220,6 +244,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0.4rem 1.2rem;
+  background-color: #F5F7FB;
   border: 1px solid #4D5B9E;
   border-radius: 0.5rem;
   font-size: 0.7rem;
@@ -227,8 +252,16 @@ body {
   cursor: pointer;
   text-align: center;
 }
-.question .answers .option .answer {
-  background-color: red;
+.question .answers .selected {
+  background-color: #D6DBF5;
+}
+.question .answers .correct {
+  background-color: #94D7A2;
+  border-color: #94D7A2;
+}
+.question .answers .incorrect {
+  background-color: #F8BCBC;
+  border-color: #F8BCBC;
 }
 .question hr {
   width: 100%;
@@ -241,20 +274,6 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-.selected {
-  background-color: #D6DBF5;
-}
-
-.correct {
-  background-color: #94D7A2;
-  border-color: #94D7A2;
-}
-
-.incorrect {
-  background-color: #F8BCBC;
-  border-color: #F8BCBC;
 }
 
 .settings {

@@ -1,4 +1,6 @@
 import React from "react";
+import yellowBlob from "../../../public/yellow_blob.png"
+import blueBlob from "../../../public/blue_blob.png"
 
 export default function StartScreen(props) {
     const {setGameSettings, templateURL} = props
@@ -20,11 +22,13 @@ export default function StartScreen(props) {
         return string.charAt(0).toUpperCase() + string.slice(1).replace("_", " ")
     }
     function startQuiz() {
-        console.log("start")
         setGameSettings(prevSettings => ({...prevSettings, startGame: !prevSettings.startGame}))
     }
     return (
         <section className="start-screen">
+
+            <img src={yellowBlob} alt="yellow-blob" className="top-blob" />
+            
             <h2 className="heading">Quizzical</h2>
             <p className="description">This is a game of trivia. Select category and difficulty for your quiz.</p>
 
@@ -60,6 +64,8 @@ export default function StartScreen(props) {
                 className="button bg"
                 onClick={startQuiz}
             >Start quiz</button>
+
+            <img src={blueBlob} alt="blue-blob" className="bottom-blob" />
         </section>
     )
 }   
