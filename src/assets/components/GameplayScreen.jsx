@@ -51,7 +51,6 @@ export default function GameplayScreen(props) {
     }, [runTest])
     
     function handleAnswers(event) {
-        console.log("click")
         const {value, position} = event.target.dataset;
         !runTest && setGameData(prevState => prevState.map((prevData, idx) => {
             return idx != position ? prevData : {
@@ -77,10 +76,10 @@ export default function GameplayScreen(props) {
                 className = "option correct no-user-select"
             }
             else if (isHeld && !isCorrect) {
-                className = "option incorrect no-user-select"
+                className = "option incorrect opaque no-user-select"
             }
             else {
-                className = "option no-user-select"
+                className = "option opaque no-user-select"
             }
         }
         runTest ? evaluatedClass() : selectedClass()

@@ -12,11 +12,15 @@ export default function QuestionField(props) {
     let answers = props.data.answers;
 
     // rendered answers still placed in order
-    
+    function decodeHtml(html) {
+        var txt = document.createElement('textarea');
+        txt.innerHTML = html;
+        return txt.value;
+    }
 
     return (
         <div className="question" id={props.id}>
-            <p className="text no-user-select">{question}</p>
+            <p className="text no-user-select">{decodeHtml(question)}</p>
             <ul className="answers">
                 {
                     answers.map((answer, idx) => {
@@ -32,7 +36,7 @@ export default function QuestionField(props) {
                                 data-position={props.id}
                                 onClick={props.handleAnswers}
                                 
-                            >{cleanUp(answer.value)}</li>
+                            >{decodeHtml(answer.value)}</li>
                         )
                     })
                 }

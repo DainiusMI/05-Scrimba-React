@@ -263,6 +263,9 @@ body {
   background-color: #F8BCBC;
   border-color: #F8BCBC;
 }
+.question .answers .opaque {
+  opacity: 0.7;
+}
 .question hr {
   width: 100%;
   border: 0.794239px solid #DBDEF0;
@@ -289,6 +292,9 @@ select {
   margin-left: 0.5rem;
   border-color: #4D5B9E;
   color: #293264;
+  font-size: 1rem;
+  height: 1.5rem;
+  text-indent: 0.2rem;
 }
 
 option:checked {

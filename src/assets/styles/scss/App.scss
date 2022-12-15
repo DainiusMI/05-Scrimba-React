@@ -144,6 +144,9 @@ body {
             background-color: map-get($question, "incorrect");
             border-color: map-get($question, "incorrect");
         }
+        .opaque {
+            opacity: .7;
+        }
     }
     hr {
         width: 100%;
@@ -171,6 +174,9 @@ select {
     margin-left: .5rem;
     border-color: map-get($button, "background" );
     color: $text-color;
+    font-size: 1rem;
+    height: 1.5rem;
+    text-indent: .2rem;
 }
 
 option:checked {
