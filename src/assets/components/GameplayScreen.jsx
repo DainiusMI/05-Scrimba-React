@@ -85,11 +85,11 @@ export default function QuizScreen(props) {
         setRunTest(true)
     }
     function resetGame() {
-        //console.log("restart clicked")
+
         setRunTest(false)
         setNewGame(!newGame);
     }
-    console.log(counter.correct)
+
     function selectButton() {
         if (runTest === true) {
             return (
@@ -110,6 +110,14 @@ export default function QuizScreen(props) {
     }
     const placeButton = selectButton()
 
+    function backToStartScreen() {
+        props.setGameSettings(prevStettings => {
+            return {
+                ...prevStettings,
+                startGame: false
+            }
+        })
+    }
     
     return (
         <section className="quiz-screen">
@@ -125,9 +133,12 @@ export default function QuizScreen(props) {
                         />    
                     )
                 } )
-                
             }
             {placeButton}
+            <button 
+                className="button button-back"
+                onClick={backToStartScreen}
+            ><i className="fa-solid fa-gear"></i></button>
         </section>
     )
 }
